@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const database = require("./database");
+const cors =  require("cors");
 
 
 const app = express();
@@ -15,6 +16,9 @@ console.log("escuchando comunicaciones al puerto"+app.get("port"));
 
 
 //midelweres
+app.use(cors({
+    origin: ["http://127.0.0.1:5501", "http://127.0.0.1:5500"]
+}))
 app.use(morgan("dev"));
 
 app.get("/productos", async (req,res) => {
